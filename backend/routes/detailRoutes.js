@@ -1,20 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const {getDetails,  setDetail, updateDetails, deleteDetail} = require('../controllers/detailController')
 
-router.get('/', (req, res) => {
-    res.status(200).json({message: 'this is a details test'})
-})
+router.get('/', getDetails)
 //send info
-router.post('/', (req, res) => {
-    res.status(200).json({message: 'this is a details test'})
-})
+router.post('/', setDetail)
 //update
-router.put('/:id', (req, res) => {
-    res.status(200).json({message: `Update ${req.params.id}`})
-})
+router.put('/:id', updateDetails)
 
-router.delete('/', (req, res) => {
-    res.status(200).json({message: `Delete ${req.params.id}`})
-})
+router.delete('/:id', deleteDetail)
 
 module.exports = router
