@@ -15,5 +15,9 @@ const app = express()
 // app.get('/api/details', (req, res) => {
 //     res.status(200).json({message: 'this is a details test'})
 // })
+
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
 app.use('/api/details', require('./routes/detailRoutes'))
 app.listen(port, () => console.log(`Server started on port ${port}`))
