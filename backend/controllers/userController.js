@@ -1,17 +1,17 @@
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')  //pwd hashing
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 
-// @desc    Register new user
+//Register new user
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
 
   if (!name || !email || !password) {
-    res.status(400)
-    throw new Error('Please add all fields')
+    res.status(400)   //bad request
+    throw new Error('this is not a school test! Fill in everything!')
   }
 
   // Check if user exists
@@ -23,6 +23,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // Hash password
+  //generate salt to hash pwd
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
 
