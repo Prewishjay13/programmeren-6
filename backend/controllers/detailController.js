@@ -32,15 +32,15 @@ const updateDetails =  asyncHandler(async (req, res) => {
         res.status(400)
         throw new console.error("details not found");
     }
-
+ const user = await User.findById(req.user.id)
     //checking for user
-    if(!req.user) {
+    if(!user) {
         res.status(401)
         throw new Error('User not found')
     }
 
     //user logged in mathches detail user
-    if (detail.user.toString() !== req.user.id) {
+    if (detail.user.toString() !== user.id) {
         res.status(401)
         throw new Error('This user not authorized')
     }
@@ -60,9 +60,17 @@ const deleteDetail =  asyncHandler(async (req, res) => {
     throw new Error('Not found')
    }
 
-   if (!req.user) {
-    res.status(401)
-    throw new Error("not Authorized")
+   const user = await User.findById(req.user.id)
+   //checking for user
+   if(!user) {
+       res.status(401)
+       throw new Error('User not found')
+   }
+
+   //user logged in mathches detail user
+   if (detail.user.toString() !== user.id) {
+       res.status(401)
+       throw new Error('This user not authorized')
    }
     await detail.remove()
    
