@@ -14,3 +14,12 @@ package.json stappen:
 - npm i express-async-handler
 - npm i bcryptjs
 - npm i jsonwebtoken
+
+
+
+putty server
+- ls (to see what directories/folders are on ur server)
+- mkdir (appname)
+- cd (directory name) (to go to the directory)
+- 
+
